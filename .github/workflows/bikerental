@@ -1,0 +1,47 @@
+3
+
+±ÏD\Í  ã               @   s(   d dl Z G dd„ dƒZG dd„ dƒZdS )é    Nc               @   s>   e Zd Zddd„Zdd„ Zdd„ Zdd	„ Zd
+d„ Zdd
+„ ZdS )Ú
+BikeRentalr   c             C   s
+   || _ dS )zK
+        Our constructor class that instantiates bike rental shop.
+        N)Ústock)Úselfr   © r   ú8/home/veer/Desktop/code/Bike-Rental-System/bikeRental.pyÚ__init__   s    zBikeRental.__init__c             C   s   t dj| jƒƒ | jS )zN
+        Displays the bikes currently available for rent in the shop.
+        z-We have currently {} bikes available to rent.)ÚprintÚformatr   )r   r   r   r   Údisplaystock   s    zBikeRental.displaystockc             C   st   |dkrt dƒ dS || jkr2t dj| jƒƒ dS tjjƒ }t dj||jƒƒ t dƒ t dƒ |  j|8  _|S dS )z=
+        Rents a bike on hourly basis to a customer.
+        r   z#Number of bikes should be positive!Nz4Sorry! We have currently {} bikes available to rent.z?You have rented a {} bike(s) on hourly basis today at {} hours.z.You will be charged $5 for each hour per bike.z#We hope that you enjoy our service.)r   r   r	   ÚdatetimeÚnowÚhour)r   Únr   r   r   r   ÚrentBikeOnHourlyBasis   s    
+
+z BikeRental.rentBikeOnHourlyBasisc             C   st   |dkrt dƒ dS || jkr2t dj| jƒƒ dS tjjƒ }t dj||jƒƒ t dƒ t dƒ |  j|8  _|S dS )z<
+        Rents a bike on daily basis to a customer.
+        r   z#Number of bikes should be positive!Nz4Sorry! We have currently {} bikes available to rent.z<You have rented {} bike(s) on daily basis today at {} hours.z.You will be charged $20 for each day per bike.z#We hope that you enjoy our service.)r   r   r	   r   r   r
+   )r   r   r   r   r   r   ÚrentBikeOnDailyBasis)   s    
+
+zBikeRental.rentBikeOnDailyBasisc             C   st   |dkrt dƒ dS || jkr2t dj| jƒƒ dS tjjƒ }t dj||jƒƒ t dƒ t dƒ |  j|8  _|S dS )z=
+        Rents a bike on weekly basis to a customer.
+        r   z#Number of bikes should be positive!Nz4Sorry! We have currently {} bikes available to rent.z=You have rented {} bike(s) on weekly basis today at {} hours.z/You will be charged $60 for each week per bike.z#We hope that you enjoy our service.)r   r   r	   r   r   r
+   )r   r   r   r   r   r   ÚrentBikeOnWeeklyBasis>   s    
+
+z BikeRental.rentBikeOnWeeklyBasisc             C   sæ   |\}}}d}|rÖ|rÖ|rÖ|  j |7  _ tjjƒ }|| }|dkrZt|jd ƒd | }n:|dkrvt|jƒd | }n|dkr”t|jd ƒd	 | }d|  ko¦dkn  r¼td
+ƒ |d }tdƒ td
+j|ƒƒ |S tdƒ dS dS )zw
+        1. Accept a rented bike from a customer
+        2. Replensihes the inventory
+        3. Return a bill
+        r   é   i  é   é   é   é   é   é<   z<You are eligible for Family rental promotion of 30% discountgffffffæ?z=Thanks for returning your bike. Hope you enjoyed our service!zThat would be ${}z'Are you sure you rented a bike with us?N)r   r   r   ÚroundÚsecondsÚdaysr   r	   )r   ÚrequestÚ
+rentalTimeÚrentalBasisZ
+numOfBikesÚbillr   ZrentalPeriodr   r   r   Ú
+returnBikeU   s(    
+
+zBikeRental.returnBikeN)r   )	Ú__name__Ú
+__module__Ú__qualname__r   r
+   r   r   r   r    r   r   r   r   r      s   
+r   c               @   s$   e Zd Zdd„ Zdd„ Zdd„ ZdS )ÚCustomerc             C   s   d| _ d| _d| _d| _dS )zU
+        Our constructor method which instantiates various customer objects.
+        r   N)Úbikesr   r   r   )r   r   r   r   r      s    zCustomer.__init__c             C   sR   t dƒ}yt|ƒ}W n tk
+r0   tdƒ dS X |dk rFtdƒ dS || _| jS )zL
+        Takes a request from the customer for the number of bikes.
+        z&How many bikes would you like to rent?zThat's not a positive integer!r   z;Invalid input. Number of bikes should be greater than zero!éÿÿÿÿr&   )ÚinputÚintÚ
+ValueErrorr   r%   )r   r%   r   r   r   ÚrequestBikeŠ   s    zCustomer.requestBikec             C   s*   | j r"| jr"| jr"| j| j | jfS dS dS )zL
+        Allows customers to return their bikes to the rental shop.
+        r   N)r   r   r   )r   r   r%   )r   r   r   r   r       s    zCustomer.returnBikeN)r!   r"   r#   r   r*   r    r   r   r   r   r$   }   s   r$   )r   r   r$   r   r   r   r   Ú<module>   s   z
